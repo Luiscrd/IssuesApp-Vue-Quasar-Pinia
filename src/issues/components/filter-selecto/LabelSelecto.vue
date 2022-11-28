@@ -13,7 +13,7 @@ const labels = labelsQuery.data;
         <LoaderSpiner size="50px" :thickness="5" text-size="2" spacing-s="5" spacing-p="2.5" />
     </div>
     <q-chip v-else v-for="label of labels" :key="label.id" :style="{ color: `#${label.color}` }"
-        :outline="selectedLabels.includes(label.name)" clickable @click="toogleLabel(label.name)">{{
+        :outline="!selectedLabels.includes(label.name)" clickable @click="toogleLabel(label.name)">{{
         label.name
         }}
     </q-chip>

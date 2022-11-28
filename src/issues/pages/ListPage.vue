@@ -2,7 +2,9 @@
 import LoaderSpiner from 'src/shared/components/LoaderSpiner.vue';
 import FilterSelector from 'src/issues/components/filter-selecto/FilterSelector.vue';
 import IssueList from 'src/issues/components/issue-list/IssueList.vue';
+import useIssues from 'src/issues/composables/useIssues';
 
+const { issuesQuery } = useIssues();
 
 </script>
 
@@ -17,10 +19,10 @@ import IssueList from 'src/issues/components/issue-list/IssueList.vue';
             <FilterSelector />
         </div>
         <div class="col-xs-12 col-md-8 right-box">
-            <div v-if="false" class="loading-rigth">
+            <div v-if="issuesQuery.isLoading.value" class="loading-rigth">
                 <LoaderSpiner spacing-p="2.5" spacing-s="15" />
             </div>
-            <IssueList />
+            <IssueList :issues="issuesQuery.data.value || []" v-else />
         </div>
     </div>
 </template>
@@ -31,13 +33,7 @@ import IssueList from 'src/issues/components/issue-list/IssueList.vue';
 }
 
 .loading-rigth {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 999;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
