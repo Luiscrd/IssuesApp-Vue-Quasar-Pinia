@@ -30,12 +30,12 @@ const essentialLinks: EssentialLinkProps[] = [
   }
 ];
 
-const value = ref(true);
+const dark = ref(true);
 
 const $q = useQuasar()
 
-watch(value, () => {
-  $q.dark.set(value.value)
+watch(dark, () => {
+  $q.dark.set(dark.value)
 })
 
 const leftDrawerOpen = ref(false)
@@ -52,7 +52,7 @@ function toggleLeftDrawer() {
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>Issues App</q-toolbar-title>
-        <q-toggle v-model="value" color="green" label="Dark Mode" left-label />
+        <q-toggle v-model="dark" color="green" label="Dark Mode" left-label />
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>

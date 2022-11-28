@@ -2,28 +2,31 @@
 import { useRoute } from 'vue-router';
 import LoaderSpiner from 'src/shared/components/LoaderSpiner.vue';
 import IssueCard from '../components/issue-list/IssueCard.vue';
+import useIssue from '../composables/useIssue';
 
 const route = useRoute();
 
 const { id } = route.params;
+
+const { issueQuery, issueCommentQuery } = useIssue(+id);
 
 const labelBreadcrumb = `Issue: ${id}`;
 
 </script>
 
 <template>
-    <div v-if="false" class="loading">
+    <div v-if="issueQuery.isLoading.value" class="loading">
         <LoaderSpiner size="100px" text-size="3" />
     </div>
-    <div class="container">
+    <div v-else class="container">
         <q-breadcrumbs class="breadcrums">
             <q-breadcrumbs-el label="Issue List" icon="home" to="/" />
             <q-breadcrumbs-el :label="labelBreadcrumb" icon="widgets" />
         </q-breadcrumbs>
-        <IssueCard />
+        <IssueCard v-if="issueQuery.data.value" :issue="issueQuery.data.value" />
         <div class="column">
-            <span class="text-h5 q-mb-md">Comentarios (5)</span>
-            <IssueCard v-for="coment of 5" :key="coment" />
+            <span class="text-h5 q-mb-md">Comentarios ({{ issueQuery.data.value?.comments }})</span>
+            <IssueCard v-for="coment of issueCommentQuery.data.value" :key="coment.id" :comments="coment" />
         </div>
     </div>
 </template>

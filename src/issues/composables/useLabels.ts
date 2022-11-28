@@ -6,7 +6,11 @@ import { computed } from 'vue';
 
 const getLabels = async (): Promise<Label[]> => {
 
-    const { data } = await gitHubApi<Label[]>('/labels?per_page=100');
+    const { data } = await gitHubApi<Label[]>('/labels?per_page=100', {
+        headers: {
+            Authorization: null
+        }
+    });
 
     return data;
 
