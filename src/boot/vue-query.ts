@@ -1,0 +1,10 @@
+import { boot } from 'quasar/wrappers';
+import { VueQueryPlugin } from '@tanstack/vue-query';
+
+export default boot(async ({ app }) => {
+
+  VueQueryPlugin.install(app, {
+
+  });
+
+})

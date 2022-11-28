@@ -52,7 +52,7 @@ function toggleLeftDrawer() {
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>Issues App</q-toolbar-title>
-        <q-toggle v-model="value" color="green" label="On Right" />
+        <q-toggle v-model="value" color="green" label="Dark Mode" left-label />
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
@@ -67,7 +67,7 @@ function toggleLeftDrawer() {
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="q-pa-lg">
       <router-view />
     </q-page-container>
   </q-layout>
