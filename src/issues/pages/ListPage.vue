@@ -40,7 +40,7 @@ const listButtons: Buttons[] = [
         </div>
     </div>
     <FloatingButtons :buttons="listButtons" />
-    <NewIssueDEialog :show="show" />
+    <NewIssueDEialog :labels="[]" :show="show" @on-close="show = false" />
 </template>
 
 <style scoped>
