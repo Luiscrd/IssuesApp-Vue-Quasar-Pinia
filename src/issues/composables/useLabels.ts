@@ -31,7 +31,7 @@ const useLabels = () => {
     return {
         labelsQuery,
         selectedLabels: computed(() => issuesStore.labels),
-        toogleLabel: issuesStore.tootglelabel
+        toogleLabel: issuesStore.tootglelabel,
     }
 
 }

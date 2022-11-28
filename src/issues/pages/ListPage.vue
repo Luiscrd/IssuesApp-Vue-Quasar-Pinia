@@ -7,8 +7,11 @@ import FloatingButtons from 'src/shared/components/FloatingButtons.vue';
 import { Buttons } from 'src/shared/interfaces/button.interface';
 import NewIssueDEialog from '../components/NewIssueDEialog.vue';
 import { ref } from 'vue';
+import useLabels from '../composables/useLabels';
 
 const { issuesQuery } = useIssues();
+
+const { labelsQuery } = useLabels();
 
 const show = ref<boolean>(false);
 
@@ -40,7 +43,8 @@ const listButtons: Buttons[] = [
         </div>
     </div>
     <FloatingButtons :buttons="listButtons" />
-    <NewIssueDEialog :labels="[]" :show="show" @on-close="show = false" />
+    <NewIssueDEialog v-if="labelsQuery.data" :labels="labelsQuery.data.value?.map(label => label.name) || []"
+        :show="show" @on-close="show = false" />
 </template>
 
 <style scoped>
