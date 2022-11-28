@@ -3,8 +3,18 @@ import LoaderSpiner from 'src/shared/components/LoaderSpiner.vue';
 import FilterSelector from 'src/issues/components/filter-selecto/FilterSelector.vue';
 import IssueList from 'src/issues/components/issue-list/IssueList.vue';
 import useIssues from 'src/issues/composables/useIssues';
+import FloatingButtons from 'src/shared/components/FloatingButtons.vue';
+import { Buttons } from 'src/shared/interfaces/button.interface';
 
 const { issuesQuery } = useIssues();
+
+const newIssue = () => {
+    console.log('hola');
+}
+
+const listButtons: Buttons[] = [
+    { color: 'primary', size: 'lg', icon: 'addchart', acction: newIssue }
+]
 
 </script>
 
@@ -25,6 +35,7 @@ const { issuesQuery } = useIssues();
             <IssueList :issues="issuesQuery.data.value || []" v-else />
         </div>
     </div>
+    <FloatingButtons :buttons="listButtons" />
 </template>
 
 <style scoped>
