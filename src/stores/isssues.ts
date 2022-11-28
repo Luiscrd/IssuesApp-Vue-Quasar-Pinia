@@ -11,7 +11,14 @@ export const useIssuesStore = defineStore('Issues', () => {
         state,
         labels,
         tootglelabel(labelName: string) {
-            throw new Error('Acción no implementada');
+
+            if (labels.value.includes(labelName)) {
+
+                labels.value = labels.value.filter(label => label !== labelName);
+                return;
+            }
+
+            labels.value.push(labelName);
         }
     }
 
