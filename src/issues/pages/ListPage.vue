@@ -5,11 +5,15 @@ import IssueList from 'src/issues/components/issue-list/IssueList.vue';
 import useIssues from 'src/issues/composables/useIssues';
 import FloatingButtons from 'src/shared/components/FloatingButtons.vue';
 import { Buttons } from 'src/shared/interfaces/button.interface';
+import NewIssueDEialog from '../components/NewIssueDEialog.vue';
+import { ref } from 'vue';
 
 const { issuesQuery } = useIssues();
 
+const show = ref<boolean>(false);
+
 const newIssue = () => {
-    console.log('hola');
+    show.value = true;
 }
 
 const listButtons: Buttons[] = [
@@ -36,6 +40,7 @@ const listButtons: Buttons[] = [
         </div>
     </div>
     <FloatingButtons :buttons="listButtons" />
+    <NewIssueDEialog :show="show" />
 </template>
 
 <style scoped>
