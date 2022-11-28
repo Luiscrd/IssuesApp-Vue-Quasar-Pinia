@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/vue-query';
 import { Issue } from 'src/issues/interfaces/issues.interface';
 import { gitHubApi } from 'src/api/gitHubApi';
-import { useIssuesStore } from 'src/stores/isssues';
-import { storeToRefs } from 'pinia';
 import { State } from 'src/issues/interfaces/issues.interface';
+import useStore from 'src/issues/composables/useStoret';
 
 const getIssues = async (labels: string[], state: State): Promise<Issue[]> => {
 
@@ -34,9 +33,7 @@ const getIssues = async (labels: string[], state: State): Promise<Issue[]> => {
 
 const useIssues = () => {
 
-    const issuesStore = useIssuesStore();
-
-    const { labels, state } = storeToRefs(issuesStore);
+    const { labels, state } = useStore();
 
     const issuesQuery = useQuery(
         ['issues', { labels, state }],
