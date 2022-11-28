@@ -23,10 +23,12 @@ const labelBreadcrumb = `Issue: ${id}`;
             <q-breadcrumbs-el label="Issue List" icon="home" to="/" />
             <q-breadcrumbs-el :label="labelBreadcrumb" icon="widgets" />
         </q-breadcrumbs>
-        <IssueCard v-if="issueQuery.data.value" :issue="issueQuery.data.value" />
+        <IssueCard v-if="issueQuery.data.value" :issue="issueQuery.data.value"
+            :issue-number="issueQuery.data.value.number" />
         <div class="column">
             <span class="text-h5 q-mb-md">Comentarios ({{ issueQuery.data.value?.comments }})</span>
-            <IssueCard v-for="coment of issueCommentQuery.data.value" :key="coment.id" :comments="coment" />
+            <IssueCard v-for="coment of issueCommentQuery.data.value" :key="coment.id" :comments="coment"
+                :issue-number="issueQuery.data.value!.number" />
         </div>
     </div>
 </template>

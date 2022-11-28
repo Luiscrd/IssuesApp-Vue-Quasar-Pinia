@@ -13,7 +13,7 @@ const props = defineProps<Props>();
 
 <template>
     <div class="row">
-        <IssueCard v-for="issue of props.issues" :key="issue.id" :issue="issue" />
+        <IssueCard v-for="issue of props.issues" :key="issue.id" :issue="issue" :issue-number="issue.number" />
     </div>
 </template>
 

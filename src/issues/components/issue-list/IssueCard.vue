@@ -5,11 +5,13 @@ import { Comment } from 'src/issues/interfaces/comments.interface';
 import { watch, ref, toRef } from 'vue';
 import { timeSince } from 'src/shared/helpers/time-sience';
 import VueMarkdown from 'vue-markdown-render';
+import useIssue from '../../composables/useIssue';
 
 
 interface Props {
     issue?: Issue;
-    comments?: Comment
+    comments?: Comment,
+    issueNumber: number,
 }
 
 const props = defineProps<Props>();
@@ -28,11 +30,14 @@ watch(() => $q.dark.isActive, val => {
 
 })
 
+const { prefechtIssue } = useIssue(props.issueNumber, { autoload: false })
+
 </script>
 
 
 <template>
-    <q-card v-if="issue" class="col-12 q-mb-md" :class="textColor" flat bordered>
+    <q-card v-if="issue" @mouseenter="prefechtIssue(issue!.number)" class="col-12 q-mb-md" :class="textColor" flat
+        bordered>
         <q-item>
             <q-item-section avatar>
                 <q-avatar>

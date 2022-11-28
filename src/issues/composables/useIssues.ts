@@ -24,9 +24,6 @@ const getIssues = async (labels: string[], state: State): Promise<Issue[]> => {
         params
     });
 
-    console.log(data);
-
-
     return data;
 
 }
