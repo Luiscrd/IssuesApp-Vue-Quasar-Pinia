@@ -69,10 +69,20 @@ const useIssue = (issueNumber: number, options?: Options) => {
 
     }
 
+    const setIssueChangeData = (issue: Issue) => {
+
+        queryClient.setQueryData(
+            ['issue', issue.number],
+            issue
+        );
+
+    }
+
     return {
         issueQuery,
         issueCommentQuery,
-        prefechtIssue
+        prefechtIssue,
+        setIssueChangeData
     }
 
 }

@@ -30,13 +30,13 @@ watch(() => $q.dark.isActive, val => {
 
 })
 
-const { prefechtIssue } = useIssue(props.issueNumber, { autoload: false })
+const { setIssueChangeData } = useIssue(props.issueNumber, { autoload: false })
 
 </script>
 
 
 <template>
-    <q-card v-if="issue" @mouseenter="prefechtIssue(issue!.number)" class="col-12 q-mb-md" :class="textColor" flat
+    <q-card v-if="issue" @mouseenter="setIssueChangeData(issue!)" class="col-12 q-mb-md" :class="textColor" flat
         bordered>
         <q-item>
             <q-item-section avatar>
