@@ -26,7 +26,7 @@ const useIssue = (issueNumber: number) => {
         ['issue', issueNumber],
         () => getIssue(issueNumber),
         {
-            staleTime: 1000 * 60
+            staleTime: 1000 * 60,
         }
 
     )
